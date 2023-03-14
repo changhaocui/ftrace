@@ -76,7 +76,7 @@ static int parse_args(int argc, char *argv[]) {
     {"diff"     , required_argument, NULL, 'd'},
     {"port"     , required_argument, NULL, 'p'},
     {"help"     , no_argument      , NULL, 'h'},
-    {"elf"     , no_argument      ,  NULL, 'e'},
+    {"elf"      , required_argument, NULL, 'e'},
     {0          , 0                , NULL,  0 },
   };
   int o;
@@ -94,6 +94,7 @@ static int parse_args(int argc, char *argv[]) {
         printf("\t-l,--log=FILE           output log to FILE\n");
         printf("\t-d,--diff=REF_SO        run DiffTest with reference REF_SO\n");
         printf("\t-p,--port=PORT          run DiffTest with port PORT\n");
+        printf("\t-e,--elf=FILE           elf file to be parsed\n");
         printf("\n");
         exit(0);
     }
