@@ -115,7 +115,7 @@ void init_monitor(int argc, char *argv[]) {
   init_log(log_file);
 
   /* Open the log file. */
-    parse_elf(elf_file);
+  parse_elf(elf_file);
   /* Initialize memory. */
   init_mem();
 
