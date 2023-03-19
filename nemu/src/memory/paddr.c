@@ -24,6 +24,8 @@ static uint8_t *pmem = NULL;
 static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 #endif
 
+#define Mtrace 0
+
 uint8_t* guest_to_host(paddr_t paddr) { return pmem + paddr - CONFIG_MBASE; }
 paddr_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
 
@@ -57,7 +59,7 @@ void init_mem() {
 }
 
 word_t paddr_read(paddr_t addr, int len) {
-  #ifdef CONFIG_ITRACE
+  #if MTRACE
   printf("输出addr读地址:%u 输出长度:%u\n",addr,len);
   #endif
   if (likely(in_pmem(addr))) return pmem_read(addr, len);
@@ -67,7 +69,7 @@ word_t paddr_read(paddr_t addr, int len) {
 }
 
 void paddr_write(paddr_t addr, int len, word_t data) {
-  #ifdef CONFIG_ITRACE
+  #if MRACE
   printf("输出addr写地址:%u 输出长度:%u\n",addr,len);
   #endif
   if (likely(in_pmem(addr))) { pmem_write(addr, len, data); return; }
